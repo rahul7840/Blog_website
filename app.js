@@ -14,7 +14,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.static("public")); 
 
 
 let posts=[];
@@ -45,7 +45,10 @@ app.get("/posts/:postName",(req,res) => {
       const  storedTitle = _.lowerCase(post.title);
 
       if(storedTitle === requestedTitle){
-        console.log("matched")
+         res.render("post", {
+          Title:post.title,
+          Content:post.content
+         })
       }
   })
 
